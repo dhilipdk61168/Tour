@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dashboard - TourGuide Pro</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Ftourguide8226back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Navigation Header -->
+    <header class="bg-surface shadow-card sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="homepage.html" class="flex items-center">
+                        <svg class="h-8 w-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L3 14h3v14h8v-8h4v8h8V14h3L16 2z"/>
+                            <circle cx="16" cy="10" r="2" fill="white"/>
+                        </svg>
+                        <span class="ml-2 text-xl font-editorial font-bold text-secondary">TourGuide Pro</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="homepage.html" class="text-text-secondary hover:text-primary transition-fast px-3 py-2 rounded-md">Home</a>
+                        <a href="destination_guide.html" class="text-text-secondary hover:text-primary transition-fast px-3 py-2 rounded-md">Destinations</a>
+                        <a href="search_results.html" class="text-text-secondary hover:text-primary transition-fast px-3 py-2 rounded-md">Tours</a>
+                        <a href="user_dashboard.html" class="text-primary font-medium px-3 py-2 rounded-md">My Trips</a>
+                    </div>
+                </div>
+
+                <!-- User Profile -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="flex items-center text-text-secondary hover:text-primary transition-fast">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop" alt="John Doe" class="w-8 h-8 rounded-full object-cover mr-2" onerror="this.src='https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150'; this.onerror=null;" />
+                            <span class="hidden md:block">John Doe</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-text-secondary hover:text-primary p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Dashboard Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Welcome Section -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-editorial font-bold text-secondary mb-2">
+                Welcome back, John!
+            </h1>
+            <p class="text-lg text-text-secondary">
+                Your next adventure awaits. Here's what's happening with your trips.
+            </p>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Upcoming Bookings -->
+                <section id="upcoming-trips" class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-editorial font-bold text-secondary">Upcoming Trips</h2>
+                        <a href="search_results.html" class="text-primary hover:text-accent transition-fast text-sm font-medium">
+                            Book New Trip
+                        </a>
+                    </div>
+
+                    <!-- Next Trip Countdown -->
+                    <div class="bg-gradient-to-r from-primary to-accent rounded-xl p-6 text-white mb-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-xl font-editorial font-semibold mb-2">Rome Food & Culture Tour</h3>
+                                <p class="text-gray-100 mb-4">with Marco Rossi • July 28, 2025</p>
+                                <div class="flex items-center space-x-4 text-sm">
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        7 days to go
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.4 4.4 0 003 15z"/>
+                                        </svg>
+                                        22°C, Sunny
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold">7</div>
+                                <div class="text-sm text-gray-100">Days Left</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pre-trip Checklist -->
+                        <div class="mt-6 pt-6 border-t border-white border-opacity-20">
+                            <h4 class="font-semibold mb-3">Pre-trip Checklist</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <input type="checkbox" checked class="mr-3 text-white" />
+                                    <span class="text-sm">Confirm meeting point with guide</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" checked class="mr-3" />
+                                    <span class="text-sm">Check weather forecast</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" class="mr-3" />
+                                    <span class="text-sm">Download offline maps</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other Upcoming Trips -->
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 border border-border rounded-lg hover:shadow-card transition-normal">
+                            <img src="https://images.pexels.com/photos/161401/fushimi-inari-taisha-shrine-kyoto-japan-temple-161401.jpeg" alt="Kyoto Temple Tour" class="w-16 h-16 rounded-lg object-cover mr-4" onerror="this.src='https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=300&auto=format&fit=crop'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-text-primary">Kyoto Temple & Garden Tour</h4>
+                                <p class="text-sm text-text-secondary">with Yuki Tanaka • August 15, 2025</p>
+                                <p class="text-sm text-primary font-medium">24 days to go</p>
+                            </div>
+                            <div class="text-right">
+                                <button class="text-primary hover:text-accent transition-fast">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Trip Timeline -->
+                <section id="trip-history" class="card">
+                    <h2 class="text-2xl font-editorial font-bold text-secondary mb-6">Trip Timeline</h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Past Trip 1 -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-2 h-2 bg-success rounded-full mt-3 mr-4"></div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-text-primary">Barcelona Tapas & Markets Tour</h4>
+                                    <span class="text-sm text-text-secondary">June 2025</span>
+                                </div>
+                                <p class="text-sm text-text-secondary mb-3">Amazing experience with Sophie! Discovered hidden gems in El Born district.</p>
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex text-warning text-sm">
+                                        ★★★★★
+                                    </div>
+                                    <button class="text-primary hover:text-accent transition-fast text-sm font-medium">
+                                        View Photos
+                                    </button>
+                                    <button class="text-primary hover:text-accent transition-fast text-sm font-medium">
+                                        Write Review
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Past Trip 2 -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-2 h-2 bg-success rounded-full mt-3 mr-4"></div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-text-primary">Paris Art & History Walk</h4>
+                                    <span class="text-sm text-text-secondary">April 2025</span>
+                                </div>
+                                <p class="text-sm text-text-secondary mb-3">Incredible insights into Parisian culture and hidden galleries.</p>
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex text-warning text-sm">
+                                        ★★★★★
+                                    </div>
+                                    <button class="text-primary hover:text-accent transition-fast text-sm font-medium">
+                                        View Photos
+                                    </button>
+                                    <span class="text-success text-sm font-medium">✓ Reviewed</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Past Trip 3 -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-2 h-2 bg-success rounded-full mt-3 mr-4"></div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-text-primary">Bali Cultural Immersion</h4>
+                                    <span class="text-sm text-text-secondary">February 2025</span>
+                                </div>
+                                <p class="text-sm text-text-secondary mb-3">Life-changing experience learning traditional crafts and cooking.</p>
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex text-warning text-sm">
+                                        ★★★★★
+                                    </div>
+                                    <button class="text-primary hover:text-accent transition-fast text-sm font-medium">
+                                        View Photos
+                                    </button>
+                                    <span class="text-success text-sm font-medium">✓ Reviewed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-6">
+                        <button class="text-primary hover:text-accent transition-fast font-medium">
+                            View All Trips
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Travel Journal -->
+                <section id="travel-journal" class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-editorial font-bold text-secondary">Travel Journal</h2>
+                        <button class="btn-primary text-sm py-2 px-4">
+                            Add Entry
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Journal Entry 1 -->
+                        <div class="border border-border rounded-lg p-4 hover:shadow-card transition-normal">
+                            <img src="https://images.pixabay.com/photo-2017/01/20/00/30/maldives-1993704_1280.jpg" alt="Barcelona memories" class="w-full h-32 object-cover rounded-lg mb-3" onerror="this.src='https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=500&auto=format&fit=crop'; this.onerror=null;" />
+                            <h4 class="font-semibold text-text-primary mb-2">Barcelona Food Adventures</h4>
+                            <p class="text-sm text-text-secondary mb-3">The best jamón ibérico I've ever tasted was at this tiny place Sophie showed us...</p>
+                            <div class="flex items-center justify-between text-xs text-text-secondary">
+                                <span>June 15, 2025</span>
+                                <button class="text-primary hover:text-accent transition-fast">Read More</button>
+                            </div>
+                        </div>
+
+                        <!-- Journal Entry 2 -->
+                        <div class="border border-border rounded-lg p-4 hover:shadow-card transition-normal">
+                            <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?q=80&w=500&auto=format&fit=crop" alt="Paris memories" class="w-full h-32 object-cover rounded-lg mb-3" onerror="this.src='https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=500'; this.onerror=null;" />
+                            <h4 class="font-semibold text-text-primary mb-2">Hidden Paris Galleries</h4>
+                            <p class="text-sm text-text-secondary mb-3">Marie-Claire took us to this incredible underground gallery that most tourists never see...</p>
+                            <div class="flex items-center justify-between text-xs text-text-secondary">
+                                <span>April 22, 2025</span>
+                                <button class="text-primary hover:text-accent transition-fast">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Quick Stats -->
+                <div class="card">
+                    <h3 class="text-lg font-editorial font-semibold text-secondary mb-4">Your Travel Stats</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-secondary">Countries Visited</span>
+                            <span class="font-semibold text-primary">8</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-secondary">Tours Completed</span>
+                            <span class="font-semibold text-primary">12</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-secondary">Favorite Guide</span>
+                            <span class="font-semibold text-primary">Sophie L.</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-secondary">Member Since</span>
+                            <span class="font-semibold text-primary">Jan 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loyalty Program -->
+                <div class="card">
+                    <h3 class="text-lg font-editorial font-semibold text-secondary mb-4">Loyalty Rewards</h3>
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-text-secondary">Current Points</span>
+                            <span class="font-semibold text-primary">2,450</span>
+                        </div>
+                        <div class="w-full bg-border rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+                        </div>
+                        <p class="text-xs text-text-secondary mt-2">550 points to Gold status</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-text-secondary">Available Rewards</span>
+                            <span class="text-primary font-medium">3</span>
+                        </div>
+                        <button class="w-full text-left p-2 border border-border rounded-lg hover:bg-background transition-fast">
+                            <div class="text-sm font-medium text-text-primary">$25 Tour Credit</div>
+                            <div class="text-xs text-text-secondary">2,000 points</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wishlist -->
+                <div class="card">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-editorial font-semibold text-secondary">Wishlist</h3>
+                        <span class="text-sm text-text-secondary">5 tours</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-2 border border-border rounded-lg hover:shadow-card transition-normal">
+                            <img src="https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg" alt="Bali Adventure" class="w-12 h-12 rounded-lg object-cover mr-3" onerror="this.src='https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?q=80&w=200&auto=format&fit=crop'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <h4 class="text-sm font-medium text-text-primary">Bali Volcano Hike</h4>
+                                <p class="text-xs text-text-secondary">From $85</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-2 border border-border rounded-lg hover:shadow-card transition-normal">
+                            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=200&auto=format&fit=crop" alt="Santorini Sunset" class="w-12 h-12 rounded-lg object-cover mr-3" onerror="this.src='https://images.pixabay.com/photo-2018/01/14/23/12/nature-3082832_1280.jpg'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <h4 class="text-sm font-medium text-text-primary">Santorini Sunset Tour</h4>
+                                <p class="text-xs text-text-secondary">From $95</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 text-primary hover:text-accent transition-fast text-sm font-medium">
+                        View All Wishlist Items
+                    </button>
+                </div>
+
+                <!-- Personalized Recommendations -->
+                <div class="card">
+                    <h3 class="text-lg font-editorial font-semibold text-secondary mb-4">Recommended for You</h3>
+                    <div class="space-y-4">
+                        <div class="border border-border rounded-lg p-3 hover:shadow-card transition-normal">
+                            <img src="https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg" alt="Tokyo Food Tour" class="w-full h-24 object-cover rounded-lg mb-2" onerror="this.src='https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=400&auto=format&fit=crop'; this.onerror=null;" />
+                            <h4 class="text-sm font-semibold text-text-primary mb-1">Tokyo Street Food Adventure</h4>
+                            <p class="text-xs text-text-secondary mb-2">Based on your love for food tours</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium text-primary">From $120</span>
+                                <button class="text-xs text-primary hover:text-accent transition-fast">View Tour</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card">
+                    <h3 class="text-lg font-editorial font-semibold text-secondary mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <a href="search_results.html" class="flex items-center p-3 border border-border rounded-lg hover:shadow-card transition-normal">
+                            <svg class="w-5 h-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <span class="text-sm font-medium text-text-primary">Find New Tours</span>
+                        </a>
+                        <button class="flex items-center p-3 border border-border rounded-lg hover:shadow-card transition-normal w-full text-left">
+                            <svg class="w-5 h-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            <span class="text-sm font-medium text-text-primary">Message Guide</span>
+                        </button>
+                        <button class="flex items-center p-3 border border-border rounded-lg hover:shadow-card transition-normal w-full text-left">
+                            <svg class="w-5 h-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <span class="text-sm font-medium text-text-primary">Account Settings</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L3 14h3v14h8v-8h4v8h8V14h3L16 2z"/>
+                            <circle cx="16" cy="10" r="2" fill="white"/>
+                        </svg>
+                        <span class="ml-2 text-xl font-editorial font-bold">TourGuide Pro</span>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        Connecting travelers with authentic local experiences worldwide.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="homepage.html" class="text-gray-300 hover:text-primary transition-fast">Home</a></li>
+                        <li><a href="destination_guide.html" class="text-gray-300 hover:text-primary transition-fast">Destinations</a></li>
+                        <li><a href="search_results.html" class="text-gray-300 hover:text-primary transition-fast">Tours</a></li>
+                        <li><a href="user_dashboard.html" class="text-gray-300 hover:text-primary transition-fast">My Account</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-primary transition-fast">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-primary transition-fast">Contact Us</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-primary transition-fast">Safety</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-primary transition-fast">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>support@tourguide-pro.com</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>Available 24/7</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center">
+                <p class="text-gray-300 text-sm">
+                    © 2025 TourGuide Pro. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Quick Actions -->
+    <div class="fixed bottom-4 left-4 right-4 md:hidden z-40">
+        <div class="flex space-x-2">
+            <a href="search_results.html" class="flex-1 bg-primary text-white py-3 rounded-lg shadow-elevated font-semibold text-center">
+                Find Tours
+            </a>
+            <button class="bg-surface text-primary p-3 rounded-lg shadow-elevated">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

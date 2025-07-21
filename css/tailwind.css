@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Ocean Horizon Palette */
+  --color-primary: #4ECDC4; /* teal-400 - Adventure trust, signature brand recognition */
+  --color-secondary: #1A365D; /* blue-900 - Authority depth, booking confidence moments */
+  --color-accent: #26D0CE; /* teal-300 - Interactive highlights, discovery encouragement */
+  
+  /* Background Colors */
+  --color-background: #FAFAFA; /* gray-50 - Clean content canvas, reading comfort */
+  --color-surface: #FFFFFF; /* white - Card elevation, content organization */
+  
+  /* Text Colors */
+  --color-text-primary: #2D3748; /* gray-700 - Extended reading, clear hierarchy */
+  --color-text-secondary: #718096; /* gray-500 - Supporting information, subtle guidance */
+  
+  /* Status Colors */
+  --color-success: #38A169; /* green-500 - Booking confirmations, positive reinforcement */
+  --color-warning: #D69E2E; /* yellow-500 - Availability alerts, helpful urgency */
+  --color-error: #E53E3E; /* red-500 - Form validation, constructive correction */
+  
+  /* Border Colors */
+  --color-border: #E2E8F0; /* gray-200 - Minimal borders for forms and tables */
+  
+  /* Shadow Values */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-elevated: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  
+  /* Animation Timing */
+  --transition-fast: 200ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 400ms ease-in-out;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-elevated;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-elevated;
+  }
+  
+  .card {
+    @apply bg-surface rounded-lg shadow-card p-6;
+  }
+  
+  .form-input {
+    @apply border border-border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .text-editorial {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .transition-fast {
+    transition: all var(--transition-fast);
+  }
+  
+  .transition-normal {
+    transition: all var(--transition-normal);
+  }
+  
+  .transition-slow {
+    transition: all var(--transition-slow);
+  }
+}

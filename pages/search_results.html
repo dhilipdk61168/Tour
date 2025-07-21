@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Results - TourGuide Pro</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Ftourguide8226back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background text-text-primary">
+    <!-- Navigation Header -->
+    <header class="bg-surface shadow-card sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="homepage.html" class="flex items-center">
+                        <svg class="h-8 w-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L3 14h3v14h8v-8h4v8h8V14h3L16 2z"/>
+                            <circle cx="16" cy="10" r="2" fill="white"/>
+                        </svg>
+                        <span class="ml-2 text-xl font-editorial font-bold text-secondary">TourGuide Pro</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="homepage.html" class="text-text-secondary hover:text-primary transition-fast px-3 py-2 rounded-md">Home</a>
+                        <a href="destination_guide.html" class="text-text-secondary hover:text-primary transition-fast px-3 py-2 rounded-md">Destinations</a>
+                        <a href="search_results.html" class="text-primary font-medium px-3 py-2 rounded-md">Tours</a>
+                        <a href="user_dashboard.html" class="text-text-secondary hover:text-primary transition-fast px-3 py-2 rounded-md">My Trips</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-text-secondary hover:text-primary p-2" id="mobile-menu-btn">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Header -->
+    <section class="bg-surface border-b border-border py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-2xl">
+                    <div class="relative">
+                        <input type="text" placeholder="Search destinations, activities, or guides..." value="Paris food tours" class="form-input w-full pl-12 pr-4 py-3 text-lg" />
+                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- View Toggle & Sort -->
+                <div class="flex items-center gap-4">
+                    <div class="flex bg-background rounded-lg p-1">
+                        <button class="p-2 rounded-md bg-primary text-white" id="grid-view">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                            </svg>
+                        </button>
+                        <button class="p-2 rounded-md text-text-secondary hover:text-primary transition-fast" id="list-view">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                            </svg>
+                        </button>
+                        <button class="p-2 rounded-md text-text-secondary hover:text-primary transition-fast" id="map-view">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <select class="form-input">
+                        <option>Sort by Popularity</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Duration: Short to Long</option>
+                        <option>Highest Rated</option>
+                        <option>Most Recent</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <aside class="lg:w-80 flex-shrink-0">
+                <div class="sticky top-24">
+                    <!-- Mobile Filter Toggle -->
+                    <button class="lg:hidden w-full btn-primary mb-4" id="filter-toggle">
+                        <svg class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                        </svg>
+                        Filters
+                    </button>
+
+                    <!-- Filter Panel -->
+                    <div class="bg-surface rounded-lg shadow-card p-6 space-y-6" id="filter-panel">
+                        <!-- Results Summary -->
+                        <div class="pb-4 border-b border-border">
+                            <h3 class="font-editorial font-semibold text-lg text-secondary mb-2">Search Results</h3>
+                            <p class="text-text-secondary">147 tours found for "Paris food tours"</p>
+                            <button class="text-primary text-sm hover:text-accent transition-fast mt-2">Clear all filters</button>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-3">Price Range</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm text-text-secondary">
+                                    <span>$25</span>
+                                    <span>$500+</span>
+                                </div>
+                                <div class="relative">
+                                    <input type="range" min="25" max="500" value="150" class="w-full h-2 bg-background rounded-lg appearance-none cursor-pointer" />
+                                </div>
+                                <div class="flex justify-between">
+                                    <input type="number" value="25" class="w-20 form-input text-sm py-2" />
+                                    <input type="number" value="150" class="w-20 form-input text-sm py-2" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Duration -->
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-3">Duration</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">1-2 hours (23)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">2-4 hours (45)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">4-6 hours (38)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Full day (28)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Multi-day (13)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Activity Type -->
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-3">Activity Type</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Food & Drink (67)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Cultural (34)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Walking Tours (28)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Historical (18)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Group Size -->
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-3">Group Size</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="group-size" class="border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Small (2-8 people)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="group-size" checked class="border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Medium (9-15 people)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="group-size" class="border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Large (16+ people)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Guide Language -->
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-3">Guide Language</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">English (142)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">French (89)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">Spanish (34)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm">German (21)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Rating -->
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-3">Minimum Rating</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="rating" class="border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm flex items-center">
+                                        <span class="text-warning mr-1">★★★★★</span>
+                                        5 stars only
+                                    </span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="rating" checked class="border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm flex items-center">
+                                        <span class="text-warning mr-1">★★★★</span>
+                                        4+ stars
+                                    </span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="rating" class="border-border text-primary focus:ring-accent" />
+                                    <span class="ml-2 text-sm flex items-center">
+                                        <span class="text-warning mr-1">★★★</span>
+                                        3+ stars
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Results Content -->
+            <main class="flex-1">
+                <!-- Search Suggestions -->
+                <div class="mb-6">
+                    <p class="text-text-secondary text-sm mb-3">Related searches:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="javascript:void(0)" class="px-3 py-1 bg-background text-text-secondary rounded-full text-sm hover:bg-primary hover:text-white transition-fast">Paris wine tasting</a>
+                        <a href="javascript:void(0)" class="px-3 py-1 bg-background text-text-secondary rounded-full text-sm hover:bg-primary hover:text-white transition-fast">Cooking classes Paris</a>
+                        <a href="javascript:void(0)" class="px-3 py-1 bg-background text-text-secondary rounded-full text-sm hover:bg-primary hover:text-white transition-fast">Market tours</a>
+                        <a href="javascript:void(0)" class="px-3 py-1 bg-background text-text-secondary rounded-full text-sm hover:bg-primary hover:text-white transition-fast">French pastry tours</a>
+                    </div>
+                </div>
+
+                <!-- Results Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="results-grid">
+                    <!-- Tour Card 1 -->
+                    <div class="card hover:shadow-elevated transition-normal cursor-pointer group relative">
+                        <!-- Wishlist Button -->
+                        <button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-fast">
+                            <svg class="h-4 w-4 text-text-secondary hover:text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+
+                        <div class="relative overflow-hidden rounded-lg mb-4">
+                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Authentic Paris Food Tour" class="w-full h-48 object-cover group-hover:scale-105 transition-slow" onerror="this.src='https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=2940'; this.onerror=null;" />
+                            <div class="absolute top-3 left-3 bg-success text-white px-2 py-1 rounded-full text-xs font-medium">
+                                Bestseller
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-warning text-white px-2 py-1 rounded-full text-xs font-medium">
+                                Only 3 spots left
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-start justify-between">
+                                <h3 class="text-lg font-editorial font-semibold text-secondary group-hover:text-primary transition-fast">
+                                    Authentic Paris Food Tour with Local Guide
+                                </h3>
+                            </div>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                3 hours
+                                <span class="mx-2">•</span>
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Max 8 people
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="flex text-warning text-sm mr-2">★★★★★</div>
+                                    <span class="text-sm text-text-secondary">4.9 (127 reviews)</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-lg font-semibold text-secondary">$89</div>
+                                    <div class="text-sm text-text-secondary">per person</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" alt="Guide Marie" class="w-6 h-6 rounded-full object-cover mr-2" onerror="this.src='https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150'; this.onerror=null;" />
+                                Guide: Marie L.
+                                <span class="mx-2">•</span>
+                                <span class="text-success">Available today</span>
+                            </div>
+
+                            <p class="text-sm text-text-secondary">Discover hidden culinary gems in Le Marais with tastings at 6 authentic local spots...</p>
+
+                            <button class="w-full btn-primary hover:bg-accent transition-normal" onclick="window.location.href='tour_detail.html'">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tour Card 2 -->
+                    <div class="card hover:shadow-elevated transition-normal cursor-pointer group relative">
+                        <button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-fast">
+                            <svg class="h-4 w-4 text-error" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+
+                        <div class="relative overflow-hidden rounded-lg mb-4">
+                            <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=2940" alt="French Pastry Workshop" class="w-full h-48 object-cover group-hover:scale-105 transition-slow" onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;" />
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-editorial font-semibold text-secondary group-hover:text-primary transition-fast">
+                                French Pastry Making Workshop
+                            </h3>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                2.5 hours
+                                <span class="mx-2">•</span>
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Max 6 people
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="flex text-warning text-sm mr-2">★★★★★</div>
+                                    <span class="text-sm text-text-secondary">4.8 (89 reviews)</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-lg font-semibold text-secondary">$125</div>
+                                    <div class="text-sm text-text-secondary">per person</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Guide Sophie" class="w-6 h-6 rounded-full object-cover mr-2" onerror="this.src='https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop'; this.onerror=null;" />
+                                Guide: Sophie C.
+                                <span class="mx-2">•</span>
+                                <span class="text-warning">2 spots left</span>
+                            </div>
+
+                            <p class="text-sm text-text-secondary">Learn to make croissants, macarons, and éclairs in a professional Parisian bakery...</p>
+
+                            <button class="w-full btn-primary hover:bg-accent transition-normal" onclick="window.location.href='tour_detail.html'">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tour Card 3 -->
+                    <div class="card hover:shadow-elevated transition-normal cursor-pointer group relative">
+                        <button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-fast">
+                            <svg class="h-4 w-4 text-text-secondary hover:text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+
+                        <div class="relative overflow-hidden rounded-lg mb-4">
+                            <img src="https://images.pixabay.com/photo-2017/09/12/13/21/wine-2742943_1280.jpg" alt="Wine Tasting Tour" class="w-full h-48 object-cover group-hover:scale-105 transition-slow" onerror="this.src='https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;" />
+                            <div class="absolute top-3 left-3 bg-primary text-white px-2 py-1 rounded-full text-xs font-medium">
+                                New
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-editorial font-semibold text-secondary group-hover:text-primary transition-fast">
+                                Paris Wine Tasting & Cheese Pairing
+                            </h3>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                2 hours
+                                <span class="mx-2">•</span>
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Max 12 people
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="flex text-warning text-sm mr-2">★★★★☆</div>
+                                    <span class="text-sm text-text-secondary">4.6 (34 reviews)</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-lg font-semibold text-secondary">$75</div>
+                                    <div class="text-sm text-text-secondary">per person</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <img src="https://images.pixabay.com/photo-2016/11/21/12/42/beard-1845166_1280.jpg" alt="Guide Pierre" class="w-6 h-6 rounded-full object-cover mr-2" onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop'; this.onerror=null;" />
+                                Guide: Pierre M.
+                                <span class="mx-2">•</span>
+                                <span class="text-success">Available tomorrow</span>
+                            </div>
+
+                            <p class="text-sm text-text-secondary">Explore French wine regions through tastings paired with artisanal cheeses...</p>
+
+                            <button class="w-full btn-primary hover:bg-accent transition-normal" onclick="window.location.href='tour_detail.html'">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tour Card 4 -->
+                    <div class="card hover:shadow-elevated transition-normal cursor-pointer group relative">
+                        <button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-fast">
+                            <svg class="h-4 w-4 text-text-secondary hover:text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+
+                        <div class="relative overflow-hidden rounded-lg mb-4">
+                            <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Market Food Tour" class="w-full h-48 object-cover group-hover:scale-105 transition-slow" onerror="this.src='https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=2940'; this.onerror=null;" />
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-editorial font-semibold text-secondary group-hover:text-primary transition-fast">
+                                Montmartre Market & Street Food Tour
+                            </h3>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                4 hours
+                                <span class="mx-2">•</span>
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Max 10 people
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="flex text-warning text-sm mr-2">★★★★★</div>
+                                    <span class="text-sm text-text-secondary">4.7 (156 reviews)</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-lg font-semibold text-secondary">$95</div>
+                                    <div class="text-sm text-text-secondary">per person</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop" alt="Guide Camille" class="w-6 h-6 rounded-full object-cover mr-2" onerror="this.src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150'; this.onerror=null;" />
+                                Guide: Camille R.
+                                <span class="mx-2">•</span>
+                                <span class="text-success">Available this week</span>
+                            </div>
+
+                            <p class="text-sm text-text-secondary">Explore local markets and taste authentic Parisian street food in historic Montmartre...</p>
+
+                            <button class="w-full btn-primary hover:bg-accent transition-normal" onclick="window.location.href='tour_detail.html'">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tour Card 5 -->
+                    <div class="card hover:shadow-elevated transition-normal cursor-pointer group relative">
+                        <button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-fast">
+                            <svg class="h-4 w-4 text-text-secondary hover:text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+
+                        <div class="relative overflow-hidden rounded-lg mb-4">
+                            <img src="https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=2940" alt="Chocolate Tour" class="w-full h-48 object-cover group-hover:scale-105 transition-slow" onerror="this.src='https://images.unsplash.com/photo-1511381939415-e44015466834?q=80&w=2940&auto=format&fit=crop'; this.onerror=null;" />
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-editorial font-semibold text-secondary group-hover:text-primary transition-fast">
+                                Artisan Chocolate & Confectionery Tour
+                            </h3>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                2.5 hours
+                                <span class="mx-2">•</span>
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Max 8 people
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="flex text-warning text-sm mr-2">★★★★★</div>
+                                    <span class="text-sm text-text-secondary">4.9 (78 reviews)</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-lg font-semibold text-secondary">$85</div>
+                                    <div class="text-sm text-text-secondary">per person</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop" alt="Guide Isabelle" class="w-6 h-6 rounded-full object-cover mr-2" onerror="this.src='https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150'; this.onerror=null;" />
+                                Guide: Isabelle D.
+                                <span class="mx-2">•</span>
+                                <span class="text-success">Available today</span>
+                            </div>
+
+                            <p class="text-sm text-text-secondary">Visit the finest chocolatiers and confectioneries in Paris with expert tastings...</p>
+
+                            <button class="w-full btn-primary hover:bg-accent transition-normal" onclick="window.location.href='tour_detail.html'">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tour Card 6 -->
+                    <div class="card hover:shadow-elevated transition-normal cursor-pointer group relative">
+                        <button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-fast">
+                            <svg class="h-4 w-4 text-text-secondary hover:text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+
+                        <div class="relative overflow-hidden rounded-lg mb-4">
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Cooking Class" class="w-full h-48 object-cover group-hover:scale-105 transition-slow" onerror="this.src='https://images.pixabay.com/photo-2017/05/07/08/56/blank-2293281_1280.jpg'; this.onerror=null;" />
+                            <div class="absolute top-3 left-3 bg-accent text-white px-2 py-1 rounded-full text-xs font-medium">
+                                Premium
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-editorial font-semibold text-secondary group-hover:text-primary transition-fast">
+                                French Cuisine Cooking Class & Dinner
+                            </h3>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                5 hours
+                                <span class="mx-2">•</span>
+                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Max 6 people
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="flex text-warning text-sm mr-2">★★★★★</div>
+                                    <span class="text-sm text-text-secondary">5.0 (42 reviews)</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-lg font-semibold text-secondary">$185</div>
+                                    <div class="text-sm text-text-secondary">per person</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center text-sm text-text-secondary">
+                                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Chef Antoine" class="w-6 h-6 rounded-full object-cover mr-2" onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop'; this.onerror=null;" />
+                                Chef: Antoine B.
+                                <span class="mx-2">•</span>
+                                <span class="text-warning">1 spot left</span>
+                            </div>
+
+                            <p class="text-sm text-text-secondary">Learn classic French techniques and enjoy your creations with wine pairings...</p>
+
+                            <button class="w-full btn-primary hover:bg-accent transition-normal" onclick="window.location.href='tour_detail.html'">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-12">
+                    <button class="btn-secondary hover:bg-opacity-90 transition-normal px-8 py-3">
+                        Load More Tours
+                        <svg class="h-5 w-5 inline ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <p class="text-sm text-text-secondary mt-3">Showing 6 of 147 tours</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Map View Modal (Hidden by default) -->
+    <div class="fixed inset-0 bg-secondary bg-opacity-50 z-50 hidden" id="map-modal">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-surface rounded-lg shadow-elevated max-w-6xl w-full max-h-screen overflow-hidden">
+                <div class="flex items-center justify-between p-6 border-b border-border">
+                    <h3 class="text-xl font-editorial font-semibold text-secondary">Tour Locations</h3>
+                    <button class="text-text-secondary hover:text-primary transition-fast" id="close-map">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="h-96 bg-background flex items-center justify-center">
+                    <div class="text-center">
+                        <svg class="h-16 w-16 text-text-secondary mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                        <p class="text-text-secondary">Interactive map with tour locations would be displayed here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 text-primary" viewBox="0 0 32 32" fill="currentColor">
+                            <path d="M16 2L3 14h3v14h8v-8h4v8h8V14h3L16 2z"/>
+                            <circle cx="16" cy="10" r="2" fill="white"/>
+                        </svg>
+                        <span class="ml-2 text-xl font-editorial font-bold">TourGuide Pro</span>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        Connecting travelers with authentic local experiences worldwide.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="homepage.html" class="text-gray-300 hover:text-primary transition-fast">Home</a></li>
+                        <li><a href="destination_guide.html" class="text-gray-300 hover:text-primary transition-fast">Destinations</a></li>
+                        <li><a href="search_results.html" class="text-gray-300 hover:text-primary transition-fast">Tours</a></li>
+                        <li><a href="user_dashboard.html" class="text-gray-300 hover:text-primary transition-fast">My Account</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-primary transition-fast">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-primary transition-fast">Contact Us</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-primary transition-fast">Safety</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-300 hover:text-primary transition-fast">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>support@tourguide-pro.com</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>Available 24/7</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center">
+                <p class="text-gray-300 text-sm">
+                    © 2025 TourGuide Pro. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Filter Panel Overlay -->
+    <div class="fixed inset-0 bg-secondary bg-opacity-50 z-40 lg:hidden hidden" id="filter-overlay">
+        <div class="fixed inset-y-0 left-0 w-80 bg-surface shadow-elevated overflow-y-auto" id="mobile-filter-panel">
+            <!-- Mobile filter content would be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Basic interactivity for demo purposes
+        document.getElementById('filter-toggle')?.addEventListener('click', function() {
+            document.getElementById('filter-overlay').classList.toggle('hidden');
+        });
+
+        document.getElementById('filter-overlay')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('map-view')?.addEventListener('click', function() {
+            document.getElementById('map-modal').classList.remove('hidden');
+        });
+
+        document.getElementById('close-map')?.addEventListener('click', function() {
+            document.getElementById('map-modal').classList.add('hidden');
+        });
+
+        // View toggle functionality
+        document.getElementById('grid-view')?.addEventListener('click', function() {
+            this.classList.add('bg-primary', 'text-white');
+            this.classList.remove('text-text-secondary');
+            document.getElementById('list-view').classList.remove('bg-primary', 'text-white');
+            document.getElementById('list-view').classList.add('text-text-secondary');
+        });
+
+        document.getElementById('list-view')?.addEventListener('click', function() {
+            this.classList.add('bg-primary', 'text-white');
+            this.classList.remove('text-text-secondary');
+            document.getElementById('grid-view').classList.remove('bg-primary', 'text-white');
+            document.getElementById('grid-view').classList.add('text-text-secondary');
+            // Would change grid layout to list layout
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
